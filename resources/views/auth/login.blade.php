@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Maintenance Management System</title>
-    
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #0766AD;  /* Strong Blue */
+            --secondary-color: #428BCA; /* Slightly Lighter Blue */
+            --accent-color: #E50FFF;       /* Bright Pink (Subtle Accents) */
+            --light-color: #FFF2F2;     /* Very Light Pink (Background Base) */
+            --text-primary: #333;       /* Dark Grey */
+            --text-secondary: #666;     /* Medium Grey */
+        }
+
         *,
         *::before,
         *::after {
@@ -18,210 +26,183 @@
             box-sizing: border-box;
         }
         body {
-            background-color: #2050a8;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            color: #ffffff;
+            min-height: 100vh;
+            color: var(--text-primary);
         }
-        .background {
-            width: 350px;
-            height: 400px;
-            position: absolute;
-            transform: translate(-50%, -50%);
-            left: 50%;
-            top: 50%;
+        .container {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            width: 400px;
+            max-width: 90%;
         }
-        .background .shape {
-            height: 150px;
-            width: 150px;
-            position: absolute;
-            border-radius: 50%;
-        }
-        .shape:first-child {
-            background: linear-gradient(#1a3c6c, #1c6ca8);
-            left: -60px;
-            top: -80px;
-        }
-        .shape:last-child {
-            background: linear-gradient(to right, #ff512f, #f09819);
-            right: -50px;
-            bottom: -90px;
-        }
-        .form-container {
-            height: auto; /* Increased height */
-            width: 360px; /* Increased width */
-            background-color: rgba(255, 255, 255, 0.2);
-            position: absolute;
-            transform: translate(-50%, -50%);
-            top: 50%;
-            left: 50%;
-            border-radius: 8px;
-            backdrop-filter: blur(8px);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 30px rgba(8, 7, 16, 0.6);
-            padding: 50px 30px; /* Increased padding */
-            box-sizing: border-box;
-        }
-        .form-container * {
-            color: #ffffff;
-            letter-spacing: 0.5px;
-            outline: none;
-            border: none;
-        }
-        .form-container h3 {
-            font-size: 24px;
-            font-weight: 500;
-            line-height: 32px;
+        .logo {
             text-align: center;
-            color: #ffffff;
+            margin-bottom: 30px;
+        }
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .logo h2 {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .logo p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .form-group {
+            margin-bottom: 25px;
         }
         label {
             display: block;
-            margin-top: 20px;
-            font-size: 14px;
+            margin-bottom: 8px;
             font-weight: 500;
-            color: #ffffff;
+            color: var(--text-primary);
+            font-size: 0.95rem;
         }
-        input {
+        input[type="email"],
+        input[type="password"] {
             display: block;
-            height: 40px;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.15);
-            border-radius: 5px;
-            padding: 0 10px;
-            margin-top: 8px;
-            font-size: 12px;
-            font-weight: 300;
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: border-color 0.3s;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
         }
-        input:focus {
-            border-color: #ffffff;
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: var(--secondary-color);
             outline: none;
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
-        }
-        ::placeholder {
-            color: #e5e5e5;
-        }
-        button {
-            margin-top: 20px; /* Adjusted margin */
-            width: 100%;
-            background-color: #ffffff;
-            color: #000000;
-            padding: 12px 0; /* Adjusted padding */
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 5px;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        button:hover {
-            background-color: #e5e5e5;
-            color: #000000;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
         .remember-me {
             display: flex;
             align-items: center;
-            margin-top: 15px; /* Adjusted margin */
+            margin-top: 15px;
+            margin-bottom: 20px;
         }
         .remember-me input[type="checkbox"] {
-            width: 15px;
-            height: 15px;
-            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
             cursor: pointer;
-            accent-color: #ffffff;
-            transition: background-color 0.3s, transform 0.3s;
+            accent-color: var(--secondary-color);
         }
-        .remember-me input[type="checkbox"]:checked {
-            background-color: #ffffff;
-            transform: scale(1.1);
+        .remember-me label {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            color: var(--text-primary);
         }
-        .remember-me span {
-            font-size: 12px;
-            color: #ffffff;
+        button[type="submit"] {
+            /* SIGN UP BUTTON STYLES  */
+            background-color: #28A745; /* Professional green for signup button */
+            color: #fff;
+            padding: 11px 18px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #1E7E34; /* Darker green on hover */
         }
         .forgot-password {
-            display: block;
-            margin-top: 20px; /* Adjusted margin */
-            text-align: center;
+            margin-top: 20px;
+            text-align: right;
         }
         .forgot-password a,
         .no-account a {
-            font-size: 12px;
-            color: #e5e5e5;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
             text-decoration: none;
-        }
-        .forgot-password a:hover,
-        /* .no-account a:hover {
-            color: #ffffff;
-        }
-        .no-account {
-            display: block;
-            margin-top: 10px; /* Adjusted margin */
-            /* text-align: center; */
-        /* }  */
-
-        .no-account {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .no-account a {
-            color: #ffffff;
-            font-size: 12px;
-            text-decoration: underline;
             transition: color 0.3s ease;
         }
+        .forgot-password a:hover,
         .no-account a:hover {
-            color: #ff512f;
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        .no-account {
+            margin-top: 25px;
+            text-align: center;
+        }
+        .validation-errors {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .session-status {
+            color: #28a745;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-    <div class="form-container">
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-user-lock"></i>
+            <h2>Sign In</h2>
+            <p>Welcome back! Please enter your credentials.</p>
+        </div>
         <form method="POST" action="{{ route('login') }}">
             @csrf
-            <h3>Welcome</h3>
 
-            <!-- Display validation errors -->
-            <x-validation-errors class="mb-4" />
+            @if ($errors->any())
+                <div class="validation-errors">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-            <!-- Display session status -->
             @if (session('status'))
-                <div class="mb-4 font-medium text-sm text-green-600">
+                <div class="session-status">
                     {{ session('status') }}
                 </div>
             @endif
 
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email" :value="old('email')" required autofocus placeholder="Email" />
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus placeholder="Your email address">
+            </div>
 
-            <label for="password">Password</label>
-            <input id="password" type="password" name="password" required placeholder="Password" />
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" required placeholder="Your password">
+            </div>
 
-            <!-- <div class="remember-me">
-                <input id="remember_me" type="checkbox" name="remember" />
-                <span>{{ __('Remember me') }}</span>
-            </div> -->
+            <div class="remember-me">
+                <input id="remember_me" type="checkbox" name="remember">
+                <label for="remember_me">Keep me logged in</label>
+            </div>
 
-            <button type="submit" style="color: #000000;">{{ __('Log In') }}</button>
+            <button type="submit">Sign In</button>
 
-            <!-- <div class="forgot-password">
+            <div class="forgot-password">
                 @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
+                    <a href="{{ route('password.request') }}">Forgot password?</a>
                 @endif
-            </div> -->
+            </div>
 
             <div class="no-account">
-                <a href="{{ route('register') }}">I don't have an account</a>
+                <p>Don't have an account? <a href="{{ route('register') }}">Create one</a></p>
             </div>
         </form>
     </div>

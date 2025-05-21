@@ -18,7 +18,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2050a8;">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #985988;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -85,7 +85,7 @@
                 <div class="nav-item">
                     <x-nav-link href="{{ route('request') }}" :active="request()->routeIs('request')">
                         <button class="btn" style="color: white; padding: 12px 20px; font-weight: bold; font-size: 16px;">
-                            {{ __('Request') }}
+                            {{ __('Submit Request') }}
                         </button>
                     </x-nav-link>
                 </div>

@@ -1,5 +1,5 @@
 <div>
-    <nav x-data="{ open: false }" class="bg-blue-900 border-b border-gray-100" style="background-color: #2050a8;">
+    <nav x-data="{ open: false }" class="bg-blue-900 border-b border-gray-100" style="background-color: #985988;">
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
@@ -105,7 +105,7 @@
                         <div class="hidden space-x-2 sm:-my-px sm:ms-5 sm:flex">
                             <x-nav-link href="{{ route('request') }}" :active="request()->routeIs('request')">
                                 <button class="btn" style="text-decoration: none; font-weight: bold; color: white; padding: 12px 20px; font-size: 16px;">
-                                    {{ __('Request') }}
+                                    {{ __('Submit Request') }}
                                 </button>
                             </x-nav-link>
                         </div>

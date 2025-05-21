@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutmeController;
 use App\Http\Controllers\AssignTechnicianController;
+use App\Http\Controllers\TechnicianDashboardController;
 use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\DepartmentController;
 use App\Livewire\Employees\Employee;
@@ -230,7 +231,10 @@ Route::post('/response/{id}', [ResponseController::class, 'store'])->name('respo
  Route::get('employees/data', [EmployeeController::class, 'getData'])->name('employees.data');
 Route::get('/requests/create', [RequestController::class, 'create'])->name('requests.create');
 // routes/web.php
+
+
 Route::post('/requests', [RequestController::class, 'store'])->name('requests.store');
+
 
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
@@ -294,6 +298,17 @@ Route::get('/user-requests', [App\Http\Controllers\ResponseController::class, 's
 
 
 
+
+// For a resource controller
+Route::resource('requests', RequestController::class);
+
+// OR for a simple route
+Route::get('/requests', [RequestController::class, 'index'])->name('requests.index');
+
+
+
+
+
 // routes/web.php
 Route::get('/technicians/assign/{id}', [TechnicianController::class, 'showAssignForm'])
      ->name('assign-technician.show');
@@ -339,4 +354,19 @@ Route::post('/submit-response/{id}', [RequestController::class, 'submitResponse'
 Route::get('/assign-technician/{id}', [AssignTechnicianController::class, 'create'])->name('assign-technician.create');
 
 
+Route::post('/assign-technician/{id}', [AssignTechnicianController::class, 'store'])->name('assign-technician.store');
+
+
+
+Route::get('/technician/requests', [TechnicianDashboardController::class, 'responseForUser'])->name('technician.requests');
+
+// Route::get('/technician/requests', [TechnicianDashboardController::class, 'responseForUser'])->name('technician.requests');
+Route::post('/requests/{request}/assign-technician', [AssignTechnicianController::class, 'store'])
+     ->name('assign-technician.store');
+
+
+   
+     
+   Route::get('/user/requests', [RequestController::class, 'index'])->name('user.requests');
+  
 });

@@ -1,148 +1,167 @@
 <x-guest-layout>
     <style>
-        body {
-            background-color: #2050a8;
-            font-family: 'Poppins', sans-serif;
+        /* Base styles */
+        *,
+        *::before,
+        *::after {
+            padding: 0;
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .background {
-            width: 400px; /* Increased width */
-            height: 400px; /* Increased height */
-            position: absolute;
-            transform: translate(-50%, -50%);
-            left: 50%;
-            top: 50%;
-        }
-        .background .shape {
-            height: 180px; /* Increased size */
-            width: 180px; /* Increased size */
-            position: absolute;
-            border-radius: 50%;
-        }
-        .shape:first-child {
-            background: linear-gradient(#1845ad, #23a2f6);
-            left: -80px; /* Adjusted position */
-            top: -95px;  /* Adjusted position */
-        }
-        .shape:last-child {
-            background: linear-gradient(to right, #ff512f, #f09819);
-            right: -65px; /* Adjusted position */
-            bottom: -95px; /* Adjusted position */
-        }
-        form {
-            /* height: auto; */
-            height: 550px;
-            width: 400px; /* Increased width */
-            background-color: rgba(255, 255, 255, 0.2);
-            position: absolute;
-            transform: translate(-50%, -50%);
-            top: 50%;
-            left: 50%;
-            border-radius: 8px;
-            backdrop-filter: blur(8px);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 30px rgba(8, 7, 16, 0.6);
-            padding: 40px 30px;
             box-sizing: border-box;
         }
-        form h3 {
-            font-size: 24px;
-            font-weight: 600;
-            line-height: 32px;
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFF2F2;
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh;
+            color: #0766AD;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            width: 450px;
+            max-width: 90%;
+        }
+        .logo {
             text-align: center;
-            color: #ffffff;
             margin-bottom: 20px;
+        }
+        .logo i {
+            font-size: 2rem;
+            color: #28A745;
+            margin-bottom: 6px;
+        }
+        .logo h2 {
+            color: #0766AD;
+            font-weight: 600;
+            margin-bottom: 3px;
+            font-size: 1.4rem;
+        }
+        .logo p {
+            font-size: 0.85rem;
+            color: #6C757D;
+        }
+        .form-group {
+            margin-bottom: 18px;
         }
         label {
             display: block;
-            margin-top: 20px;
-            font-size: 14px;
+            margin-bottom: 5px;
             font-weight: 500;
-            color: #ffffff;
+            color: #343A40;
+            font-size: 0.9rem;
         }
-        input {
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
             display: block;
-            height: 40px;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.15);
+            padding: 9px 11px;
+            border: 1px solid #CED4DA;
             border-radius: 5px;
-            padding: 0 10px;
-            margin-top: 8px;
-            font-size: 12px;
-            font-weight: 300;
-            color: #000000;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: border-color 0.3s;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
         }
-        input:focus {
-            border-color: #ffffff;
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #28A745;
             outline: none;
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 1px 3px rgba(40, 167, 69, 0.25);
         }
-        ::placeholder {
-            color: #e5e5e5;
-        }
-        button {
-            margin-top: 20px;
-            width: 100%;
-            background-color: #ffffff;
-            color: #000000;
-            padding: 12px 0;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 5px;
-            cursor: pointer;
+        button[type="submit"] {
+            background-color: #28A745;
+            color: #fff;
+            padding: 11px 18px;
             border: none;
-            transition: background-color 0.3s, color 0.3s;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
         }
-        button:hover {
-            background-color: #e5e5e5;
-            color: #000000;
+        button[type="submit"]:hover {
+            background-color: #1E7E34;
         }
         .already-registered {
-            margin-top: 20px;
+            margin-top: 18px;
             text-align: center;
+            font-size: 0.85rem;
+            color: #6C757D;
         }
         .already-registered a {
-            color: #ffffff;
-            font-size: 12px;
-            text-decoration: underline;
+            color: #007BFF;
+            text-decoration: none;
             transition: color 0.3s ease;
         }
         .already-registered a:hover {
-            color: #ff512f;
+            color: #0056B3;
+            text-decoration: underline;
+        }
+        .validation-errors {
+            color: #DC3545;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        .validation-errors ul {
+            list-style: disc;
+            padding-left: 18px;
+        }
+        .validation-errors li {
+            margin-bottom: 3px;
         }
     </style>
 
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
-        <h3>Welcome</h3>
-
-        <label for="name">Name</label>
-        <input id="name" type="text" name="name" placeholder="Enter your name" value="{{ old('name') }}" required autofocus autocomplete="name">
-
-        <label for="email">Email</label>
-        <input id="email" type="email" name="email" placeholder="Enter your email" value="{{ old('email') }}" required autocomplete="username">
-
-        <label for="password">Password</label>
-        <input id="password" type="password" name="password" placeholder="Enter your password" required autocomplete="new-password">
-
-        <label for="password_confirmation">Confirm Password</label>
-        <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm your password" required autocomplete="new-password">
-
-        <button type="submit">Register</button>
-
-        <div class="already-registered">
-            <a href="{{ route('login') }}">{{ __('Already registered?') }}</a>
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-user-plus"></i>
+            <h2>Create New Account</h2>
+            <p class="lead">Please fill out the form to register.</p>
         </div>
-    </form>
+
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
+
+            @if ($errors->any())
+                <div class="validation-errors">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <div class="form-group">
+                <label for="name">Your Full Name</label>
+                <input id="name" type="text" name="name" placeholder="Enter your full name" value="{{ old('name') }}" required autofocus autocomplete="name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Your Email Address</label>
+                <input id="email" type="email" name="email" placeholder="Enter a valid email address" value="{{ old('email') }}" required autocomplete="username">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Create Password</label>
+                <input id="password" type="password" name="password" placeholder="Choose a strong password" required autocomplete="new-password">
+            </div>
+
+            <div class="form-group">
+                <label for="password_confirmation">Confirm Your Password</label>
+                <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Re-enter your password" required autocomplete="new-password">
+            </div>
+
+            <button type="submit">Sign Up</button>
+
+            <div class="already-registered">
+                <p>Already have an account? <a href="{{ route('login') }}">Log In</a></p>
+            </div>
+        </form>
+    </div>
 </x-guest-layout>

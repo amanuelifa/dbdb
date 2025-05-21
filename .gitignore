@@ -33,3 +33,15 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+
+/vendor
+/node_modules
+.env
+/public/storage
+/storage/*.key
+/.idea
+/.vscode
+*.log
+*.env
+.DS_Store
